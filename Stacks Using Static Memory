@@ -1,0 +1,97 @@
+/* 
+****************************************************
+Stacks Implementation By Static Memory Allcoations
+
+Code By: Dewansh Jangir
+
+Date: 28 Oct, 2021
+****************************************************
+*/
+
+
+#include<iostream>
+using namespace std;
+const int MAX=4; //Stack Size
+void push(int x); // Declare Push Function
+bool isfull();    //Function  to check condition of OverFlow  
+bool isempty();   //Function to check condition of UnderFlow
+int a[MAX]={0};   // Array used to store stack data
+int top=-1;       //Top Element for traversal 
+void push(int x)
+{
+    if(isfull())
+    {
+        cout<<"Overflow Condition"<<endl;
+    }
+    else
+    {
+        top++;  //Here top will be incremented if stack is not full
+        a[top]=x;    
+    }
+}
+void pop()
+{
+    if(isempty())
+    {
+        cout<<"UnderFlow Condition"<<endl;
+        
+    }
+    else
+    {
+        top--;  // Basically Decreases the top such that we can't access the particular element
+    }
+}
+bool isempty()
+{
+    if(top==-1)  //if top==-1, then list is empty
+    {
+        return true;
+        
+    }
+    else
+    return false;
+}
+
+bool isfull()
+{
+    if(top==MAX-1) //if top==max-1 then list is full
+    {
+        return true;
+    }
+    else
+    return false;
+    
+}
+void peek()
+{
+    if(isempty())
+    {
+        cout<<"Underflow Condition"<<endl;
+    }
+    else
+    cout<<"Peek Element: "<<a[top]<<endl;
+}
+int main()
+{
+    
+    int ar[MAX];
+    
+    cout<<"Enter "<<MAX<<" elements in Stack: "<<endl;
+    for(int i=0;i<MAX;i++)
+    {
+        cin>>ar[i];
+    }
+    
+    for(int i=0;i<MAX;i++)
+    {
+        push(ar[i]);
+    }
+    
+    cout<<"Stack Elements in LIFO Order: "<<endl;
+    for(int i=top;i>=0;i--)
+    {
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+    peek();
+}
