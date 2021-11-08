@@ -1,0 +1,101 @@
+/*******************************Code By Dewansh Jangir**************************/
+/*******************************Pull If needed**********************************/
+/*******************************Created on 8 November, 2021 ********************/
+
+
+
+#include<iostream>
+
+using namespace std;
+
+const int MAX=6;   //Declare the Maximum Size of Queue
+
+int rear=-1,front=-1,d=0;  // Front and Rear are declared Globally and d will help us to find out after which condition there will be overflow condition.
+
+int arr[MAX]={0},da[MAX]; // Arrays for Queue are declared here.
+
+bool isfull()  // Function To Check Overflow Condition
+{
+    if(rear==MAX-1)
+    return true;
+    else 
+    return false;
+}
+
+bool isempty() // Function To Check Underflow Condition
+{
+    if(front==rear+1||front==-1)
+    return true;
+    else 
+    return false;
+}
+
+void insert(int x)   //Function To Insert Element At the rear of queue
+{
+    if(isfull())
+    {
+        cout<<"Overflow Condition After "<<d<<" th Insertion."<<endl;
+    }
+    else
+    {
+        if(front==-1)
+        {
+            front=0;
+            rear++;
+            arr[rear]=x;
+            d++;
+        }
+        
+        else
+        {
+            
+            rear++;
+            arr[rear]=x;
+            d++;
+        }
+    }
+}
+
+void del() //Function to delete at the front of the queue
+{
+    if(isempty())
+    {
+        cout<<"Underflow Condition"<<endl;
+
+    }
+    else
+    {
+        front++;
+    }
+}
+
+void display()  // Function to display the queue
+{
+    for(int i=front;i<=rear;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int main()
+{
+    
+    cout<<"Enter Data In Queue One By One "<<endl;
+    for(int i=0;i<MAX;i++)  //Elements to be Inserted in Queue will be Entered Here.
+    {
+        cin>>da[i];
+    }
+    for(int i=0;i<MAX;i++)
+    {
+        insert(da[i]);
+    }
+    cout<<"Before Deletion: ";
+    display();
+    cout<<endl;
+    cout<<"After Deletion: ";
+    del();
+    del();
+    display();
+
+    
+}
